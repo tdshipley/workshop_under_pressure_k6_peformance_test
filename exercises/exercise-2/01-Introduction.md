@@ -28,11 +28,11 @@ cat ./src/my-first-k6-test.js
 ```
 
 ### Checkpoint:
- Severn lines of code should be in your terminal. 
+ Seven lines of code should be in your terminal. 
 
 </br>
 <details>
-    <summary>**Problem** Don't see severn lines of code? Click me for help.</summary>
+    <summary>**Problem** Don't see seven lines of code? Click me for help.</summary>
 
 You should see an output in your terminal similar to this:
 
