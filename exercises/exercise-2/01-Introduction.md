@@ -126,7 +126,7 @@ running (00m01.6s), 0/1 VUs, 1 complete and 0 interrupted iterations
 default ✓ [ 100% ] 1 VUs  00m01.6s/10m0s  1/1 iters, 1 per VU
 ```
 
-## Task: Write your own test
+## Test your knowledge
 
 Create a new JavaScript file in the `./src` folder and call it `my-second-k6-test.js` in it create a new test which:
 
