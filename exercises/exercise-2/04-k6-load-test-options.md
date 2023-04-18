@@ -99,7 +99,7 @@ _Simple load profile_
 
 What if you want to add a [ramp-up or ramp-down](../XX-Future-Ideas/Parameters-of-a-load-test.md#ramp-up-and-ramp-down-periods), so that the profile looks more like this?
 
-![Constant load profile, with ramps](./images/load_profile-constant.png.png)
+![Constant load profile, with ramps](./images/load_profile-constant.png)
 
 _Constant load profile, with ramps_
 
