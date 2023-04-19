@@ -31,7 +31,13 @@ export default function() {
 This script declares two simple arrays: one containing usernames, and one containing passwords.
 The script chooses one pair from those arrays randomly, then passes them onto an HTTP POST request.
 
-When you run this script, you'll notice that no errors are returned:
+The script is saved in `./src/buggy-test.js` you can run it like this:
+
+```
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js
+```
+
+Did you notice any errors? No, neither did we! Let's look at the output:
 
 ```shell
 
@@ -42,7 +48,7 @@ When you run this script, you'll notice that no errors are returned:
   / __________ \  |__| \__\ \_____/ .io
 
   execution: local
-     script: testdata-simple.js
+     script: buggy-test.js
      output: -
 
   scenarios: (100.00%) 1 scenario, 1 max VUs, 10m30s max duration (incl. graceful stop):
@@ -76,7 +82,7 @@ To find it, we could use a check.
 
 Checks are a type of testing criteria that can be used to verify the response returned by a request. We
 will talk more about checks in exercise 4. But for now let's add a check that the response returns a 200
-status code:
+status code. Update `./src/buggy-test.js` to match the code below:
 
 ```js
 import http from 'k6/http';
@@ -102,7 +108,13 @@ export default function() {
 
 The above script now checks whether the response returned is an HTTP 200.
 
-Run that script, and you'll see a significant change in the end-of-test summary:
+Run that script again with the check in place:
+
+```
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js
+```
+
+You can see a significant change in the end-of-test summary:
 
 ```shell
      ✗ is status 200
@@ -117,7 +129,8 @@ But what's going on?
 
 Since the script uses test data, it could very well be that the username and password are incorrect. Maybe the combination is what causes an authentication error. In this case, the `username` and `password` arrays have only three elements, so it wouldn't be too difficult to test them all manually. But what if you had hundreds of them?
 
-In that case, you can try adding logging at specific parts of your script by using `console.log()`. The script below shows this statement in action:
+In that case, you can try adding logging at specific parts of your script by using `console.log()`. Update
+`./src/buggy-test.js` so it matches the code below:
 
 ```js
 import http from 'k6/http';
@@ -140,7 +153,13 @@ export default function() {
 }
 ```
 
-The `console.log()` statement prints out the exact combination used, like this:
+Run that script again with the `console.log()` in place:
+
+```
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js
+```
+
+A statement prints out the exact combination used, like this:
 
 ```shell
 INFO[0000] username: guest  / password: 12345          source=console
@@ -152,7 +171,8 @@ That way, you know exactly which combination to try. Perhaps the username or the
 
 Now, imagine you try to log into the app using the username and password selected by the script (`guest` and `12345`) and it doesn't work. Aha! The credentials were wrong to begin with. You verify that the other two accounts you had work.
 
-Remove the third `guest` credentials and modify the random number to return only `0` or `1`:
+Remove the third `guest` credentials and modify the random number to return only `0` or `1`. Do that by
+updating `./src/buggy-test.js` to match the code below:
 
 ```js
 import http from 'k6/http';
@@ -176,7 +196,13 @@ export default function() {
 }
 ```
 
-When you re-run that script, you may notice that despite the corrected credentials, it still fails. This is a good thing! It means you've solved the first error and can begin working on the second.
+Run `./src/buggy-test.js` again to see if the test is fixed:
+
+```
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js
+```
+
+Despite the corrected credentials, it still fails. This is a good thing! It means you've solved the first error and can begin working on the second.
 
 What else could be wrong? What response is being returned, if not an HTTP 200?
 
@@ -185,7 +211,7 @@ What else could be wrong? What response is being returned, if not an HTTP 200?
 To find out exactly what the request is returning, you can use the `--http-debug` flag. Run the test like this:
 
 ```shell
-k6 run test.js --http-debug
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js --http-debug
 ```
 
 This time, the output includes some new information:
@@ -198,7 +224,7 @@ This time, the output includes some new information:
   / __________ \  |__| \__\ \_____/ .io
 
   execution: local
-     script: testdata-simple.js
+     script: buggy-test.js
      output: -
 
   scenarios: (100.00%) 1 scenario, 1 max VUs, 10m30s max duration (incl. graceful stop):
@@ -261,8 +287,8 @@ But *why* is there an authentication error?
 
 To get even more information, run the script again, this time requesting a full HTTP debug:
 
-```shell
-k6 run test.js --http-debug=full
+```
+docker run --rm -i grafana/k6 run - <./src/buggy-test.js --http-debug=full
 ```
 
 This time, you see not just the response and request headers but also the request and response *bodies*:
