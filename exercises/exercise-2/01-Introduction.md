@@ -145,4 +145,4 @@ docker run --rm -i grafana/k6 run - <./src/my-second-k6-test.js
 </details>
 </br>
 
-Now you can execute a test let's learn more about understanding the results. Move on to [02-Understanding-k6-results.md](02-Understanidng-k6-results.md)
+Now you can execute a test let's learn more about understanding the results. Move on to [02-Understanding-k6-results.md](02-Understanding-k6-results.md)
