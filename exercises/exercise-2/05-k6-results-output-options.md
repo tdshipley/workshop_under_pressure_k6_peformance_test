@@ -106,14 +106,14 @@ Update the command to output the results in JSON format.
 </br>
 <details>
     <summary>**Problem** Unsure how to change the command? Click me for a hint.</summary>
+</br>
+This section introduces the `-o` or `--out` command flag you can use to tell
+k6 what format you want the output of your test to be in; CSV or JSON. 
+You should change your docker run command to include this flag.
 
-    This section introduces the `-o` or `--out` command flag you can use to tell
-    k6 what format you want the output of your test to be in; CSV or JSON. 
-    You should change your docker run command to include this flag.
+Remember the command above is first creates a docker container with k6 installed
+to run your test in. Then it takes a k6 command... you should update the k6 command.
 
-    Remember the command above is first creates a docker container with k6 installed
-    to run your test in. Then it takes a k6 command... you should update the k6 command.
-
-    If you need more information check: https://k6.io/docs/get-started/results-output/
+If you need more information check: https://k6.io/docs/get-started/results-output/
 </details>
 </br>
