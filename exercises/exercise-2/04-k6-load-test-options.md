@@ -129,7 +129,7 @@ If you're using stages, here's what your script should look like so far:
 
 ```js
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import sleep from 'k6';
 
 export let options = {
   stages: [
@@ -142,12 +142,67 @@ export let options = {
 export default function() {
   let url = 'https://httpbin.test.k6.io/post';
   let response = http.post(url, 'Hello world!');
-  check(response, {
-      'Application says hello': (r) => r.body.includes('Hello world!')
-  });
-
   sleep(Math.random() * 5);
 }
 ```
 
 ## Test your knowledge
+
+In your `./src` folder is a test called `stages-of-testing.js`. Use the cat command below to take a quick look at it in your terminal:
+
+```
+cat ./src/stages-of-testing.js
+```
+
+### Checkpoint:
+ Fourteen lines of code should be in your terminal. 
+
+</br>
+<details>
+    <summary>**Problem** Don't see fourteen lines of code? Click me for help.</summary>
+
+You should see an output in your terminal similar to this:
+
+```
+thomas.shipley@HOME exercise-2 % cat ./src/stages-of-testing.js
+import http from 'k6/http';
+import sleep from 'k6';
+
+
+// Code Missing: Add options to create two stages
+// in your test run one of one minute
+// and another of two minutes 
+
+export default function() {
+  let url = 'https://test.k6.io/contacts.php';
+  // Code Missing: Make a get request using k6 to
+  // the URL above.
+  sleep(Math.random() * 5);
+}
+```
+
+If you see an output like this:
+
+```
+cat: .stages-of-testing.js: No such file or directory
+```
+
+Check your terminal is in the exercise-2 folder
+</details>
+</br>
+
+It looks like some code is missing! Your task is to add the missing code back into the script.
+Each `Code Missing:` comment in the script will tell you what the code should do.
+
+For this exercise, you have three `Code Missing` tasks:
+
+1. Add an options object which creates two stages in your test that last one minute each.
+2. Make a get request using K6 to the URL above
+
+Once done, run your test and it should execute in stages!
+
+```
+docker run --rm -i grafana/k6 run - <./src/stages-of-testing.js
+```
+
+Move on to [05-k6-results-output-options.md](05-k6-results-output-options.md)
