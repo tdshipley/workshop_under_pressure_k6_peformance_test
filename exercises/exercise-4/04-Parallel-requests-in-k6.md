@@ -3,7 +3,7 @@ Parallel requests are requests that are sent at the same time. Parallel requests
 
 This screenshot shows the Network panel in Chrome DevTools while a site is loaded. Each bar shows when resources embedded in the page were requested throughout the first 4000 ms.
 
-![](../../images/parallel-requests.png)
+![](./images/parallel-requests.png)
 
 The orange arrow points to three parallel requests. This indicates that the client (in this case, the browser) sent three different HTTP requests at the same time.
 
@@ -87,3 +87,5 @@ C: When you're testing API endpoints
 1. A. Parallel requests are sometimes, but not always, useful. For example, they are useful if you're trying to simulate a user accessing a web app on a browser, but not so useful if you're trying to mimic sequential requests to an API endpoint.
 2. B. All other things being equal, increasing the parallelism of your requests will increase the throughput (rps) of your test.
 3. A. The key here is your objective, not *what* you're testing. If you want to increase your test throughput (the number of requests sent by k6), parallel requests *would* be a valid way to do that. Whether you're using multiple HTTP methods or testing API endpoints is beside the point.
+
+Move on to [05-Setup-and-Teardown-functions.md](05-Setup-and-Teardown-functions.md)

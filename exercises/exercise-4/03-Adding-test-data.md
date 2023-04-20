@@ -145,7 +145,7 @@ cat ./src/test-data.js
 You should see an output in your terminal similar to this:
 
 ```
-thomas.shipley@HOME exercise-2 % cat ./src/test-data.js
+thomas.shipley@HOME exercise-4 % cat ./src/test-data.js
 import http from 'k6/http';
 import { check } from 'k6';
 
