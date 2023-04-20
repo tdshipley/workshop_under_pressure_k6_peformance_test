@@ -226,3 +226,5 @@ C: 1144
 1. B. The 95th percentile of the response time is an aggregated metric: it relies on measurements from all requests up to that point. This is not something you can create a check for, although you can certainly include this as a [threshold](https://k6.io/docs/using-k6/thresholds/) in your script. The error rate of a test is similarly aggregated. B, the size of the response body, is the correct answer.
 2. C. Checks parse the responses from the application server, not the request sent by k6.
 3. C. The number of checks that failed is displayed in  `✗ 1144`. This request's checks passed 51.50% of the time.
+
+Move on to [01-Adding-checks-to-your-script.md](01-Adding-checks-to-your-script.md)
