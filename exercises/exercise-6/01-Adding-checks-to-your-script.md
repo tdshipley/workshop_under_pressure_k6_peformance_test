@@ -227,4 +227,4 @@ C: 1144
 2. C. Checks parse the responses from the application server, not the request sent by k6.
 3. C. The number of checks that failed is displayed in  `✗ 1144`. This request's checks passed 51.50% of the time.
 
-Move on to [01-Adding-checks-to-your-script.md](01-Adding-checks-to-your-script.md)
+Move on to [02-Setting-test-criteria-with-thresholds.md](02-Setting-test-criteria-with-thresholds.md)
