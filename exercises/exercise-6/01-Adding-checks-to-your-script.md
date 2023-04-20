@@ -36,16 +36,16 @@ export default function() {
 If you see an output like this:
 
 ```
-cat: .my-first-k6-test.js: No such file or directory
+cat: .checks.js: No such file or directory
 ```
 
-Check your terminal is in the exercise-2 folder
+Check your terminal is in the exercise-6 folder
 </details>
 </br>
 
 You already know the expected response of the target server to the request the script is sending: it should send back whatever the script sends to it. In this case, that's `Hello world!`
 
-So, remove the `console.log()` statement and add a check by copying this code snippet:
+So, remove the `console.log()` statement and add a check by copying this code snippet into `./src/checks.js`:
 
 ```js
 import http from 'k6/http';
@@ -81,8 +81,8 @@ The check you've just added looks for the string `Hello world!` in the body of t
 
 What does it look like in the end-of-test summary? Save your script and run:
 
-```plain
-k6 run test.js
+```
+docker run --rm -i grafana/k6 run - <./src/checks.js
 ```
 
 and you should see output similar to this:
@@ -95,7 +95,7 @@ and you should see output similar to this:
   / __________ \  |__| \__\ \_____/ .io
 
   execution: local
-     script: test.js
+     script: checks.js
      output: -
 
   scenarios: (100.00%) 1 scenario, 1 max VUs, 10m30s max duration (incl. graceful stop):
@@ -138,7 +138,7 @@ and the `✓` means that all the requests executed (just one in this test run) p
 
 What does it look like when the check fails?
 
-Modify the script to search for text that shouldn't be found in the response, like so:
+Modify `./src/checks.js` to search for text that shouldn't be found in the response, like so:
 
 ```js
 import http from 'k6/http';
@@ -153,7 +153,13 @@ export default function() {
 }
 ```
 
-Run that, and you should get the following result:
+Run that:
+
+```
+docker run --rm -i grafana/k6 run - <./src/checks.js
+```
+
+You should get the following result:
 
 ```plain
      ✗ Application says hello
@@ -173,10 +179,6 @@ You may have noticed that in the last example, `http_req_failed`, or the HTTP er
 ## Other types of checks
 
 The [checks](https://k6.io/docs/using-k6/checks/) page contains other types of checks you can do, including the HTTP response code and the response body size. You can also include multiple checks for a single response.
-
-## Next up
-
-You're almost ready to scale up your test to multiple users! Before you do so, the next section discusses how to make your test realistic with think time.
 
 ## Test your knowledge
 
